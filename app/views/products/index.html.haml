@@ -3,7 +3,16 @@
   .span12
     Kelly, need text here tell people all about the auction and why it's important.
 %hr
-
+- if @bidder.blank?
+  .row
+    .span12
+      .alert.alert-block.alert-error.fade.in
+        %a.close.to-right{ data: {dismiss: 'alert'}, href: '#' }
+          x
+        %h4
+          You need to log into the
+          %a{href:"http://chabot.my-pta.org/"} Chabot Parent Portal
+          , hit the auction link and be redirected here to bid on items
 .row
   .span12
     %ul.nav.nav-tabs

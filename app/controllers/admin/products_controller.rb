@@ -1,10 +1,10 @@
 class Admin::ProductsController < ApplicationController
-  skip_before_filter :authenticate_user!
+  before_filter :authenticate_user!
 
   active_scaffold :"product" do |conf|
 
-    conf.columns = [:base_value, :bid_increment, :category, :contact_id, :description, :donor_name, :min_bid, :name, :photo_url, :short_description, :close_on_formatted,:open_on_formatted]
-    #conf.list.columns = [:title, :resource_format, :status, :updated_at,:topic_list_tags]
+    conf.columns = [:category,:name,:description,:photo_url, :base_value, :min_bid, :bid_increment,  :donor_name, :contact_id,:open_on_formatted,  :close_on_formatted]
+    conf.list.columns = [:category, :name, :high_bidder_email,:open_on_formatted,  :close_on_formatted]
 
     conf.columns[:close_on_formatted].label = "Close On"
     conf.columns[:open_on_formatted].label = "Open On"

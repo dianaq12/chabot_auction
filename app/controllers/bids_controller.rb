@@ -1,7 +1,4 @@
 class BidsController < ApplicationController
-  def index
-
-  end
 
   def create
     @product = Product.find(params[:product_id])

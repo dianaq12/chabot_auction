@@ -42,4 +42,8 @@ class Product < ActiveRecord::Base
     return self.min_bid unless self.current_value
     self.current_value + self.bid_increment
   end
+
+  def high_bidder?(bidder)
+    bidder && high_bidder_email && high_bidder_email == bidder
+  end
 end

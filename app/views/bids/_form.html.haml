@@ -11,8 +11,14 @@
         - f.object.errors.full_messages.each do |error|
           %li
             = error
+  - if product.high_bidder?(@bidder)
+    .alert.alert-block.alert-success.fade.in
+      %a.close.to-right{ data: {dismiss: 'alert'}, href: '#' }
+        x
+      %h4
+        You are currently the high bidder!!
   .row
-    .span3
+    .span4
       = f.input :amount, label:"Bid Amount:", hint: "min. #{number_to_currency(product.minimum_bid)}",input_html:{class:"span1"}
-    .span2
+    .span1
       = f.submit "Submit Bid",:class => 'btn btn-warning to-right product-submit', :id => "product-#{product.id}","data-product-url"=>product_bids_path(product)
