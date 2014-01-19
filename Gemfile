@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.1.0'
 gem 'rails', '3.2.16'
-#gem 'sqlite3'
-gem 'pg'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
@@ -22,6 +21,7 @@ group :development do
   gem 'hub', :require=>nil
   gem 'quiet_assets'
   gem 'rails_layout'
+  gem 'sqlite3'
 end
 group :development, :test do
   gem 'factory_girl_rails'
@@ -34,6 +34,8 @@ group :test do
   gem 'email_spec'
   gem 'launchy'
 end
+
+group :production do gem 'pg' end
 
 gem 'rails_12factor', group: :production
 
