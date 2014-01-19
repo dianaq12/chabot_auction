@@ -1,19 +1,17 @@
 source 'https://rubygems.org'
 ruby '2.1.0'
 gem 'rails', '3.2.16'
-#gem 'sqlite3'
-gem 'pg'
+gem 'sqlite3'
+#gem 'pg'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'uglifier', '>= 1.0.3'
 end
 gem 'jquery-rails'
 gem 'bootstrap-sass', '~> 2.3.2.2'
-gem 'cancan'
 gem 'devise'
 gem 'figaro'
 gem 'haml-rails'
-gem 'rolify'
 gem 'simple_form'
 gem 'active_scaffold'
 

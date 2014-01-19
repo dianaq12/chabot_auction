@@ -11,13 +11,49 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140118193514) do
+ActiveRecord::Schema.define(:version => 20140118235733) do
+
+  create_table "bids", :force => true do |t|
+    t.string   "email"
+    t.decimal  "amount"
+    t.integer  "product_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+  end
+
+  create_table "contacts", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "products", :force => true do |t|
+    t.integer  "category_id"
+    t.string   "name"
+    t.string   "photo_url"
+    t.text     "description"
+    t.string   "donor_name"
+    t.text     "short_description"
+    t.decimal  "base_value",        :precision => 8, :scale => 2
+    t.integer  "min_bid"
+    t.integer  "bid_increment"
+    t.integer  "contact_id"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.decimal  "current_value",     :precision => 8, :scale => 2
+    t.datetime "open_on"
+    t.datetime "close_on"
   end
 
   create_table "roles", :force => true do |t|

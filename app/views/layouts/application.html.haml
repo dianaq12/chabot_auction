@@ -11,10 +11,24 @@
     -# application layout styled for Bootstrap 2.3
     %header
       = render 'layouts/navigation'
+
+
+
     %main{:role => "main"}
       .container
         .content
           .row
+            .span12
+              .well
+                .row
+                  .span2
+                    %img{src:"http://i.imgur.com/UqNrKCm.gif", alt:"logo", id:"logo"}
+                  .span9
+                    %h1{style:"line-height:32px;font-size:30px;"}
+                      %span Chabot Parents Club Auction Site
+                    %h2{style:"line-height:14px;font-size:12px;"}
+                      %span Supporting Chabot Elementary, Castro Valley, CA
+            .row
             .span12
               = render 'layouts/messages'
               = yield

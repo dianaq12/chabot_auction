@@ -12,3 +12,23 @@
  *= require active_scaffold
  *= require_tree .
  */
+
+.to-right {
+  float: right;
+}
+.content {
+  .tab-pane {
+    .row {
+      padding-bottom: 10px;
+    }
+  }
+  .bid-info {
+    margin-left: 10px !important;
+  }
+  .product-container {
+    padding-left:30px;
+  }
+  h1, h3 {
+    color: #FFA500;
+  }
+}
