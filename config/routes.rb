@@ -1,5 +1,6 @@
 ChabotAuction::Application.routes.draw do
 
+
   resources :products do
     resources :bids
   end

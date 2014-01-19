@@ -31,4 +31,13 @@
   h1, h3 {
     color: #FFA500;
   }
+  form.form-horizontal {
+    margin: 20px 0px 0px 0px !important;
+  }
+  .form-horizontal .help-block {
+    margin-top: 0px;
+    margin-left: 5px;
+    font-style: italic;
+    color: #A09F9F;
+  }
 }

@@ -1,0 +1,25 @@
+
+.row
+  .span12
+    Kelly, need text here tell people all about the auction and why it's important.
+%hr
+
+.row
+  .span12
+    %ul.nav.nav-tabs
+      - @categories.each_with_index do |category,i|
+        %li{class:("active" if i==0)}
+          %a{href:"##{category.name.gsub(" ","_")}","data-toggle" =>"tab"}= category.name
+    .tab-content
+      - @categories.each_with_index do |category,i|
+        .tab-pane{id:category.name.gsub(" ","_"), class:("active" if i==0)}
+          - category.products.in_groups_of(2,false) do |product_group|
+            .row
+              - product_group.each do |product|
+                .span6
+                  .well
+                    .row
+                      .span5.product-container
+                        = render "product_container", product:product
+
+

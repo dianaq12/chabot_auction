@@ -1,0 +1,18 @@
+= simple_form_for [product,@bid||Bid.new], :html => { :class => 'form-horizontal' } do |f|
+  - if f.object.errors.present?
+
+    .alert.alert-block.alert-error.fade.in
+      %a.close.to-right{ data: {dismiss: 'alert'}, href: '#' }
+        x
+      %h4
+        = "#{f.object.errors.size} #{'error'.pluralize(f.object.errors.size)} prohibited this #{f.object.class.name.underscore.humanize.titleize} from being saved"
+
+      %ul
+        - f.object.errors.full_messages.each do |error|
+          %li
+            = error
+  .row
+    .span3
+      = f.input :amount, label:"Bid Amount:", hint: "min. #{number_to_currency(product.minimum_bid)}",input_html:{class:"span1"}
+    .span2
+      = f.submit "Submit Bid",:class => 'btn btn-warning to-right product-submit', :id => "product-#{product.id}","data-product-url"=>product_bids_path(product)

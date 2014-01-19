@@ -1,0 +1,34 @@
+.row
+  .span5
+    %h3= product.name
+.row
+  .span5
+    %img{src:product.photo_url}
+.row
+  .span5
+    = product.description
+.row
+  .span5
+    = "<strong>Est. Value</strong>: #{number_to_currency product.base_value}".html_safe
+- if product.open?
+  .row
+    .span2
+      = "<strong>Current Bid</strong>: #{number_to_currency product.current_value}".html_safe
+    .span1.bid-info
+      = "<strong>Bids</strong>: #{product.bids.count}".html_safe
+    .span2
+      = "<strong>High Bidder</strong>: #{product.high_bidder_email}".html_safe
+  .row
+    .span5
+      = render "bids/form", product: product
+  .row
+    .span3
+      ="<strong>Bidding Closes</strong>: #{product.close_on_formatted}".html_safe
+- elsif product.closed?
+  .row
+    .span3
+      ="<strong>Bidding Closed On</strong>: #{product.close_on_formatted}".html_safe
+-else
+  .row
+    .span3
+      ="<strong>Bidding Starts</strong>: #{product.open_on_formatted}".html_safe
