@@ -5,7 +5,7 @@ class Bid < ActiveRecord::Base
 
   validates_presence_of :email, message: " - You must login from the Parent Portal and hit the Auction link"
 
-  validate :bid_amount, :product_still_open?
+  validate :bid_amount, :product_open?
 
   scope :highest, order("amount DESC").limit(1)
 

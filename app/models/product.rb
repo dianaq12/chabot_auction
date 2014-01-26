@@ -9,16 +9,19 @@ class Product < ActiveRecord::Base
   validates_presence_of :base_value, :bid_increment, :description, :close_on, :open_on, :min_bid, :category_id
 
   def close_on_formatted= formatted_date
+    Time.zone = 'Pacific Time (US & Canada)'
     return unless formatted_date.present?
     self.close_on = Time.strptime(formatted_date,DATE_FORMAT)
   end
 
   def close_on_formatted
+    Time.zone = 'Pacific Time (US & Canada)'
     self.close_on.strftime(DATE_FORMAT) if self.close_on.present?
   end
 
   def open_on_formatted= formatted_date
     return unless formatted_date.present?
+    Time.zone = 'Pacific Time (US & Canada)'
     self.open_on = Time.strptime(formatted_date,DATE_FORMAT)
   end
 
