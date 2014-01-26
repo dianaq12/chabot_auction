@@ -13,6 +13,7 @@ gem 'figaro'
 gem 'haml-rails'
 gem 'simple_form'
 gem 'active_scaffold'
+gem 'chronic'
 
 group :development do
   gem 'better_errors'
