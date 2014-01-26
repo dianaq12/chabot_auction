@@ -16,7 +16,8 @@ class Product < ActiveRecord::Base
   end
 
   def close_on_formatted
-    self.close_on.in_time_zone("Pacific Time (US & Canada)").strftime(DATE_FORMAT) if self.close_on.present?
+    #self.close_on.in_time_zone("Pacific Time (US & Canada)").strftime(DATE_FORMAT) if self.close_on.present?
+    self.close_on.strftime(DATE_FORMAT) if self.close_on.present?
   end
 
   def open_on_formatted= formatted_date
