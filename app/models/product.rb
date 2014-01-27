@@ -3,7 +3,7 @@ class Product < ActiveRecord::Base
   attr_accessible :base_value, :bid_increment, :category_id, :contact_id, :description, :donor_name, :min_bid, :name, :photo_url, :short_description, :close_on, :open_on_formatted, :close_on_formatted
 
   belongs_to :category
-  has_many :bids
+  has_many :bids, dependent: :destroy
   belongs_to :contact
   DATE_FORMAT = "%m/%d/%Y %I:%M %p"
 
@@ -40,7 +40,7 @@ class Product < ActiveRecord::Base
   end
 
   def minimum_bid
-    return self.min_bid if bids.size == 0
+    return self.min_bid unless self.bids.highest.first
     self.bids.highest.first.amount + self.bid_increment
   end
 
