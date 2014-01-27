@@ -9,6 +9,9 @@ class Bid < ActiveRecord::Base
 
   scope :highest, order("amount DESC").limit(1)
 
+  after_create :deliver_emails
+  before_create :current_high_bid
+
   def bid_amount
     if amount.blank? || amount < product.minimum_bid
       errors.add(:amount, "must be more than min. amount")
@@ -16,5 +19,13 @@ class Bid < ActiveRecord::Base
   end
   def product_open?
     product.open?
+  end
+private
+  def deliver_emails
+    BidMailer.confirmation(self).deliver
+    BidMailer.out_bid(@original_high_bid).deliver if  @original_high_bid
+  end
+  def current_high_bid
+    @original_high_bid = Bid.highest.first
   end
 end

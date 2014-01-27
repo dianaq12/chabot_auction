@@ -8,16 +8,14 @@
   .span5
     = product.description
 .row
-  .span5
+  .span2
     = "<strong>Est. Value</strong>: #{number_to_currency product.base_value}".html_safe
-- if product.open?
-  .row
+  - if product.open?
     .span2
-      = "<strong>Current Bid</strong>: #{number_to_currency product.current_value}".html_safe
+      = "<strong>Current Bid</strong>: #{number_to_currency(product.bids.highest.first.amount) if product.bids.highest.first}".html_safe
     .span1.bid-info
       = "<strong>Bids</strong>: #{product.bids.count}".html_safe
-    .span2
-      = "<strong>High Bidder</strong>: #{product.high_bidder_email}".html_safe
+- if product.open?
   .row
     .span5
       = render "bids/form", product: product

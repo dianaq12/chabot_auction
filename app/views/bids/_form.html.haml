@@ -4,8 +4,6 @@
     .alert.alert-block.alert-error.fade.in
       %a.close.to-right{ data: {dismiss: 'alert'}, href: '#' }
         x
-      %h4
-        = "#{f.object.errors.size} #{'error'.pluralize(f.object.errors.size)} prohibited this #{f.object.class.name.underscore.humanize.titleize} from being saved"
 
       %ul
         - f.object.errors.full_messages.each do |error|
@@ -20,5 +18,6 @@
   .row
     .span4
       = f.input :amount, label:"Bid Amount:", hint: "min. #{number_to_currency(product.minimum_bid)}",input_html:{class:"span1"}
+      = f.input :email, as: :hidden,input_html:{value:@bidder}
     .span1
-      = f.submit "Submit Bid",:class => 'btn btn-warning to-right product-submit', :id => "product-#{product.id}","data-product-url"=>product_bids_path(product)
+      = f.submit "Submit Bid",:disable_with=>"Submitting...",:class => 'btn btn-warning to-right product-submit', :id => "product-#{product.id}","data-product-url"=>product_bids_path(product)

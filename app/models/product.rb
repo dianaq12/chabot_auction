@@ -40,8 +40,8 @@ class Product < ActiveRecord::Base
   end
 
   def minimum_bid
-    return self.min_bid unless self.current_value
-    self.current_value + self.bid_increment
+    return self.min_bid if bids.size == 0
+    self.bids.highest.first.amount + self.bid_increment
   end
 
   def high_bidder?(bidder)

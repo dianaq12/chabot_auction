@@ -22,7 +22,7 @@
     .tab-content
       - @categories.each_with_index do |category,i|
         .tab-pane{id:category.name.gsub(" ","_"), class:("active" if i==0)}
-          - category.products.in_groups_of(2,false) do |product_group|
+          - category.products.order(:name).in_groups_of(2,false) do |product_group|
             .row
               - product_group.each do |product|
                 .span6
