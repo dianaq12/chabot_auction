@@ -19,4 +19,7 @@ module Admin::ProductsHelper
     content << javascript_tag("$(function() {$('#datetimepicker2').datetimepicker({language: 'en',pick12HourFormat: true});});")
     content.html_safe
   end
+  def base_value_form_column(record,column)
+    text_field_tag("record[base_value]",record.base_value)
+  end
 end
