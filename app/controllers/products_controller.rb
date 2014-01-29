@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   skip_before_filter :authenticate_user!
 
   def index
-    @bidder = params[:m]
+    @bidder = Base64.decode64(params[:m])
     @categories = Category.all
   end
 
