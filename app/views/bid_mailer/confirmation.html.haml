@@ -1,3 +1,4 @@
 %div= "Hi #{@email},"
 %p= %Q(You are the current high bidder on "#{@bid.product.name}" at the Chabot Auction.).html_safe
+%p= %Q(Bidding on "#{@bid.product.name}" closes on #{@bid.product.close_on_formatted}.).html_safe
 

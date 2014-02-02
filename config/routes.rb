@@ -14,9 +14,9 @@ ChabotAuction::Application.routes.draw do
   end
 
   authenticated :user do
-    root :to => 'admin/product#index'
+    root :to => 'admin/products#index'
   end
-  root :to => "product#index"
+  root :to => "products#index"
   devise_for :users
   resources :users
 end

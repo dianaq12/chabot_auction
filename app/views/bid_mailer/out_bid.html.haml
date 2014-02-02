@@ -1,2 +1,5 @@
 %div= "Hi #{@email},"
 %p= %Q(You have just been out bid on "#{@bid.product.name}" at the Chabot Auction.).html_safe
+%p
+  To enter a new bid go to the
+  %a{href:"http://chabot-auction.herokuapp.com/products?m=#{Base64.encode64(@email)}"} Chabot Auction site

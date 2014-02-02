@@ -1,7 +1,19 @@
 
 .row
   .span12
-    Kelly, need text here tell people all about the auction and why it's important.
+    %p Welcome to Chabot Parent Club's Online Auction Website! This website will be used to auction items to support Chabot Teachers, The Chabot Musical, and other Chabot events and activities. Each category or item will explain how winnings will be used.
+    %p
+      Auction Procedures:
+      %ul
+        %li You MUST have a chabotparentsclub.org account to take part in an auction. Please note which email account you have used for this website, as that is the email notifications about bids and winnings will be sent to.
+        %li Auctions have varied start and end dates. Please take note when you bid!
+        %li You will receive an email confirming your bids and notifications when you get outbid. If you are the highest bidder, you will see a green banner stating so when you view the item.
+        %li Winners will be contacted as soon as possible after the bidding closes. Payments for Musical Tickets must be received within 3 days. After 3 days, the next highest bidder will be offered the item. All other items have 5 days to be paid.
+        %li Payments can be made via the chabotparentsclub.org, or via check to the office. An email will be sent to the winners listing winnings and instructions for payment.
+
+    %p THANK YOU for supporting Chabot!!
+
+
 %hr
 - if @bidder.blank?
   .row
@@ -10,9 +22,9 @@
         %a.close.to-right{ data: {dismiss: 'alert'}, href: '#' }
           x
         %h4
-          You need to log into the
-          %a{href:"http://chabot.my-pta.org/"} Chabot Parent Portal
-          , hit the auction link and be redirected here to bid on items
+          To bid on items, you need to log into the
+          %a{href:"http://chabot.my-pta.org/"} Chabot Parents Club website,
+          hit the auction link and be redirected here.
 .row
   .span12
     %ul.nav.nav-tabs
@@ -22,6 +34,9 @@
     .tab-content
       - @categories.each_with_index do |category,i|
         .tab-pane{id:category.name.gsub(" ","_"), class:("active" if i==0)}
+          .row
+            .span12
+              %h4= category.description
           - category.products.order(:name).in_groups_of(2,false) do |product_group|
             .row
               - product_group.each do |product|

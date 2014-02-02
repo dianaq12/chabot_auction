@@ -16,12 +16,16 @@
     .span1.bid-info
       = "<strong>Bids</strong>: #{product.bids.count}".html_safe
 - if product.open?
-  .row
-    .span5
-      = render "bids/form", product: product
+  - unless @bidder.blank?
+    .row
+      .span5
+        = render "bids/form", product: product
   .row
     .span3
       ="<strong>Bidding Closes</strong>: #{product.close_on_formatted}".html_safe
+    - unless @bidder.blank?
+      .span2
+        ="<strong>Bidder</strong>: #{@bidder}".html_safe
 - elsif product.closed?
   .row
     .span3

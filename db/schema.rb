@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140129044636) do
+ActiveRecord::Schema.define(:version => 20140129052328) do
 
   create_table "bids", :force => true do |t|
     t.string   "email"
@@ -45,15 +45,15 @@ ActiveRecord::Schema.define(:version => 20140129044636) do
     t.text     "description"
     t.string   "donor_name"
     t.text     "short_description"
-    t.string   "base_value",        :limit => 8
     t.integer  "min_bid"
     t.integer  "bid_increment"
     t.integer  "contact_id"
-    t.datetime "created_at",                                                   :null => false
-    t.datetime "updated_at",                                                   :null => false
-    t.decimal  "current_value",                  :precision => 8, :scale => 2
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.decimal  "current_value",     :precision => 8, :scale => 2
     t.datetime "open_on"
     t.datetime "close_on"
+    t.string   "base_value"
   end
 
   create_table "roles", :force => true do |t|
