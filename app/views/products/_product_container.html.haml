@@ -6,7 +6,7 @@
     %img{src:product.photo_url}
 .row
   .span5
-    = product.description
+    = product.description.html_safe
 .row
   .span2
     = "<strong>Est. Value</strong>: #{number_to_currency product.base_value}".html_safe
