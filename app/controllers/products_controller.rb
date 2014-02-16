@@ -3,6 +3,7 @@ class ProductsController < ApplicationController
 
   def index
     @bidder = Base64.decode64(params[:m]) if params[:m]
+    @active_tab = cookies[:product_tab].present? ? cookies[:product_tab] : Category.first.name.gsub(" ","_")
     @categories = Category.all
   end
 

@@ -3,6 +3,7 @@
 
 $(document).ready(function() {
     $(".product-submit").on("click", productSubmit);
+    $(".nav-tabs li a").on("click",persistTab);
 });
 
 function productSubmit(e) {
@@ -19,4 +20,8 @@ function productSubmit(e) {
             alert( "Bid failed to submit.  Please try again." );
         });
 
+}
+
+function persistTab() {
+    $.cookie('product_tab',$(this).attr("href"),{expires:30,path:'/'});
 }

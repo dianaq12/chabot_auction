@@ -29,21 +29,19 @@
   .span12
     %ul.nav.nav-tabs
       - @categories.each_with_index do |category,i|
-        %li{class:("active" if i==0)}
+        %li{class:("active" if "##{category.name.gsub(" ","_")}" == @active_tab)}
           %a{href:"##{category.name.gsub(" ","_")}","data-toggle" =>"tab"}= category.name
     .tab-content
       - @categories.each_with_index do |category,i|
-        .tab-pane{id:category.name.gsub(" ","_"), class:("active" if i==0)}
+        .tab-pane{id:category.name.gsub(" ","_"), class:("active" if "##{category.name.gsub(" ","_")}" == @active_tab)}
           .row
             .span12
               %h4= category.description
           - category.products.order(:name).in_groups_of(2,false) do |product_group|
             .row
               - product_group.each do |product|
-                .span6
+                .span12
                   .well
                     .row
-                      .span5.product-container
+                      .span12.product-container
                         = render "product_container", product:product
-
-

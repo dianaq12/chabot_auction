@@ -1,39 +1,39 @@
 .row
-  .span5
+  .span12
     %h3= product.name
 .row
-  .span5
-    %img{src:product.photo_url}
-.row
-  .span5
+  - if product.photo_url
+    .span5
+      %img{src:product.photo_url}
+  .span6
     = product.description.html_safe
-.row
-  .span2
-    = "<strong>Est. Value</strong>: #{number_to_currency product.base_value}".html_safe
-  - if product.open?
-    .span2
-      = "<strong>Current Bid</strong>: #{number_to_currency(product.bids.highest.first.amount) if product.bids.highest.first}".html_safe
-    .span1.bid-info
-      = "<strong>Bids</strong>: #{product.bids.count}".html_safe
-- if product.open?
-  - unless @bidder.blank?
     .row
-      .span5
-        = render "bids/form", product: product
-  .row
-    .span3
-      ="<strong>Bidding Closes</strong>: #{product.close_on_formatted}".html_safe
-    - unless @bidder.blank?
       .span2
-        ="<strong>Bidder</strong>: #{@bidder}".html_safe
-- elsif product.closed?
-  .row
-    .span3
-      ="<strong>Bidding Closed On</strong>: #{product.close_on_formatted}".html_safe
--else
-  .row
-    .span3
-      ="<strong>Bidding Starts</strong>: #{product.open_on_formatted}".html_safe
-  .row
-    .span3
-      ="<strong>Bidding Closes</strong>: #{product.close_on_formatted}".html_safe
+        = "<strong>Est. Value</strong>: #{number_to_currency product.base_value}".html_safe
+      - if product.open?
+        .span2
+          = "<strong>Current Bid</strong>: #{number_to_currency(product.bids.highest.first.amount) if product.bids.highest.first}".html_safe
+        .span1.bid-info
+          = "<strong>Bids</strong>: #{product.bids.count}".html_safe
+    - if product.open?
+      - unless @bidder.blank?
+        .row
+          .span5
+            = render "bids/form", product: product
+      .row
+        .span3
+          ="<strong>Bidding Closes</strong>: #{product.close_on_formatted}".html_safe
+        - unless @bidder.blank?
+          .span2
+            ="<strong>Bidder</strong>: #{@bidder}".html_safe
+    - elsif product.closed?
+      .row
+        .span3
+          ="<strong>Bidding Closed On</strong>: #{product.close_on_formatted}".html_safe
+    -else
+      .row
+        .span3
+          ="<strong>Bidding Starts</strong>: #{product.open_on_formatted}".html_safe
+      .row
+        .span3
+          ="<strong>Bidding Closes</strong>: #{product.close_on_formatted}".html_safe
