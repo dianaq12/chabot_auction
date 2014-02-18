@@ -1,4 +1,4 @@
-= simple_form_for [product,@bid||Bid.new], :html => { :class => 'form-horizontal' } do |f|
+= simple_form_for [product,@bid||Bid.new], remote:true, :html => { id: "new_bid_#{product.id}", :class => 'form-horizontal new-bid' } do |f|
   - if f.object.errors.present?
 
     .alert.alert-block.alert-error.fade.in

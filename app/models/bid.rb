@@ -26,6 +26,7 @@ private
     BidMailer.out_bid(@original_high_bid).deliver if  @original_high_bid
   end
   def current_high_bid
-    @original_high_bid = Bid.highest.first
+    highest_bid = self.product.bids.highest
+    @original_high_bid = highest_bid.first if highest_bid.count > 0
   end
 end

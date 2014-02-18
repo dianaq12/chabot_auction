@@ -4,22 +4,15 @@
 $(document).ready(function() {
     $(".product-submit").on("click", productSubmit);
     $(".nav-tabs li a").on("click",persistTab);
+    $(".new-bid").bind("ajax:complete", productSubmit);
 });
 
-function productSubmit(e) {
-    e.preventDefault();
-    var parent = $(this).parents(".product-container");
-    var form =  $(this).parents("form");
-    var bidUrl = $(this).data("product-url");
-    $.post( bidUrl,$(form).serialize() )
-        .done(function( data ) {
-            $(parent).html(data);
-            $(".product-submit").on("click", productSubmit);
-        })
-        .fail(function() {
-            alert( "Bid failed to submit.  Please try again." );
-        });
-
+function productSubmit(evt, data, status, xhr) {
+    if (data.status == 200) {
+        var parent = $(this).parents(".product-container");
+        $(parent).html(data.responseText);
+        $(".new-bid").bind("ajax:complete", productSubmit);
+    } else { alert( "Bid failed to submit.  Please try again." ); }
 }
 
 function persistTab() {
