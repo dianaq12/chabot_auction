@@ -13,6 +13,10 @@
 
     %p THANK YOU for supporting Chabot!!
 
+- if current_user
+  .row
+    .span12
+      %h3= "Current funds raised: #{Product.all.map{|p| p.highest_bid_amount}.sum}"
 
 %hr
 - if @bidder.blank?

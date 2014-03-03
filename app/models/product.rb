@@ -47,4 +47,8 @@ class Product < ActiveRecord::Base
   def high_bidder?(bidder)
     bidder && high_bidder_email && high_bidder_email == bidder
   end
+
+  def highest_bid_amount
+    self.bids.highest.first.present? ? self.bids.highest.first.amount : 0
+  end
 end
