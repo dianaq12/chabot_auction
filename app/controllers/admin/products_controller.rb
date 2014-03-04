@@ -10,6 +10,8 @@ class Admin::ProductsController < ApplicationController
     conf.columns[:open_on_formatted].label = "Open On"
 
     conf.columns[:high_bidder_email].sort_by :method => 'high_bidder_email'
+
+    conf.list.pagination = false
   end
 
   def before_update_save(record)
