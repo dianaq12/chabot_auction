@@ -1,6 +1,6 @@
 
 class Product < ActiveRecord::Base
-  attr_accessible :base_value, :bid_increment, :category_id, :contact_id, :description, :donor_name, :min_bid, :name, :photo_url, :short_description, :close_on, :open_on_formatted, :close_on_formatted
+  attr_accessible :base_value, :bid_increment, :category_id, :contact_id, :description, :donor_name, :min_bid, :name, :photo_url, :short_description, :close_on, :open_on_formatted, :close_on_formatted, :paid
 
   belongs_to :category
   has_many :bids, dependent: :destroy

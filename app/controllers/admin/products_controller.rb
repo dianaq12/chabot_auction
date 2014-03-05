@@ -4,10 +4,12 @@ class Admin::ProductsController < ApplicationController
   active_scaffold :"product" do |conf|
 
     conf.columns = [:category,:name,:description,:photo_url, :base_value, :min_bid, :bid_increment,  :donor_name, :contact_id,:open_on_formatted,  :close_on_formatted,:high_bidder_email]
-    conf.list.columns = [:category, :name, :high_bidder_email, :highest_bid_amount,:open_on_formatted, :bids, :close_on_formatted]
+    conf.list.columns = [:category, :name, :high_bidder_email, :highest_bid_amount,:open_on_formatted, :bids, :close_on_formatted, :paid]
 
     conf.columns[:close_on_formatted].label = "Close On"
     conf.columns[:open_on_formatted].label = "Open On"
+
+    conf.columns[:paid].inplace_edit = true
 
     conf.columns[:high_bidder_email].sort_by :method => 'high_bidder_email'
 
