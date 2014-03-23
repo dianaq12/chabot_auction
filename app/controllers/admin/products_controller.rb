@@ -12,6 +12,8 @@ class Admin::ProductsController < ApplicationController
     conf.columns[:paid].inplace_edit = true
 
     conf.columns[:high_bidder_email].sort_by :method => 'high_bidder_email'
+    conf.columns[:open_on_formatted].sort_by :method => 'open_on'
+    conf.columns[:close_on_formatted].sort_by :method => 'close_on'
 
     conf.list.pagination = false
   end

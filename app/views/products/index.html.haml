@@ -16,7 +16,7 @@
 - if current_user
   .row
     .span12
-      %h3= "Current funds raised: #{Product.all.map{|p| p.highest_bid_amount}.sum}"
+      %h3= "Current funds raised: #{Product.active.all.map{|p| p.highest_bid_amount}.sum}"
 
 %hr
 - if @bidder.blank?
@@ -32,16 +32,17 @@
 .row
   .span12
     %ul.nav.nav-tabs
-      - @categories.each_with_index do |category,i|
-        %li{class:("active" if "##{category.name.gsub(" ","_")}" == @active_tab)}
-          %a{href:"##{category.name.gsub(" ","_")}","data-toggle" =>"tab"}= category.name
+      - @categories.each do |category|
+        - if category.products.active.count > 0
+          %li{class:("active" if "##{category.name.gsub(" ","_")}" == @active_tab)}
+            %a{href:"##{category.name.gsub(" ","_")}","data-toggle" =>"tab"}= category.name
     .tab-content
-      - @categories.each_with_index do |category,i|
+      - @categories.each do |category|
         .tab-pane{id:category.name.gsub(" ","_"), class:("active" if "##{category.name.gsub(" ","_")}" == @active_tab)}
           .row
             .span12
               %h4= category.description
-          - category.products.order(:name).in_groups_of(2,false) do |product_group|
+          - category.products.active.order(:name).in_groups_of(2,false) do |product_group|
             .row
               - product_group.each do |product|
                 .span12
