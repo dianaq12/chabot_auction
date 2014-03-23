@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
 
   validates_presence_of :base_value, :bid_increment, :description, :close_on, :open_on, :min_bid, :category_id
 
-  scope :active, where("close_on > '#{Date.today.to_s}' AND open_on > '#{Date.today.to_s}'")
+  scope :active, where("close_on > '#{(Date.today - 3).to_s}' ")
 
   def close_on_formatted= formatted_date
     return unless formatted_date.present?
