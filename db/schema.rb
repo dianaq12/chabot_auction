@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140305035631) do
+ActiveRecord::Schema.define(:version => 20150112060100) do
 
   create_table "bids", :force => true do |t|
     t.string   "email"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20140305035631) do
     t.datetime "close_on"
     t.string   "base_value"
     t.boolean  "paid",                                            :default => false
+    t.string   "large_photo_url"
   end
 
   create_table "roles", :force => true do |t|

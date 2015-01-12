@@ -1,2 +1,6 @@
-%h1 Product#show
-%p Find me in app/views/product/show.html.haml
+.row
+  .span12.image-close
+    = link_to "Close", :back, class: "btn"
+.row
+  .span12
+    %img{src:@product.large_photo_url}

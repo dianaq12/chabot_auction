@@ -3,11 +3,12 @@
     %h3= product.name
 .row
   - if product.photo_url
-    .span5
+    .span5.view-larger-image
       %img{src:product.photo_url}
+      = link_to "View Larger Image", product_path(product), class: "btn" if product.large_photo_url
   .span6
     = product.description.html_safe
-    .row
+    .row.container
       .span2
         = "<strong>Est. Value</strong>: #{number_to_currency product.base_value}".html_safe
       - if product.open?
@@ -20,20 +21,34 @@
         .row
           .span5
             = render "bids/form", product: product
+
+      - unless @bidder.blank?
+        .row
+          .span6
+            ="<strong>Bidding As</strong>: #{@bidder}".html_safe
+
       .row
-        .span3
-          ="<strong>Bidding Closes</strong>: #{product.close_on_formatted}".html_safe
-        - unless @bidder.blank?
-          .span2
-            ="<strong>Bidder</strong>: #{@bidder}".html_safe
+        .span6
+          %strong Bidding Closes:
+          = product.close_on_formatted
+          %span.hint= "(in #{time_ago_in_words(product.close_on, include_seconds: true)})"
+
     - elsif product.closed?
       .row
         .span3
           ="<strong>Bidding Closed On</strong>: #{product.close_on_formatted}".html_safe
+      .row
+        .span3
+          %strong Final Bid Price:
+          = number_to_currency product.highest_bid_amount
     -else
       .row
-        .span3
-          ="<strong>Bidding Starts</strong>: #{product.open_on_formatted}".html_safe
+        .span6
+          %strong Bidding Starts:
+          = product.open_on_formatted
+          %span.hint= "(in #{time_ago_in_words(product.open_on, include_seconds: true)})"
       .row
-        .span3
-          ="<strong>Bidding Closes</strong>: #{product.close_on_formatted}".html_safe
+        .span6
+          %strong Bidding Closes:
+          = product.close_on_formatted
+          %span.hint= "(in #{time_ago_in_words(product.close_on, include_seconds: true)})"

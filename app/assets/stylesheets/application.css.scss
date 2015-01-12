@@ -43,4 +43,21 @@
     font-style: italic;
     color: #A09F9F;
   }
+  .image-close {
+    text-align:center;
+    font-size:18px;
+    margin-bottom: 15px;
+  }
+
+  .view-larger-image {
+    text-align:center;
+    a.btn {
+      margin-top: 15px;
+    }
+  }
+
+  .hint {
+    font-size: 12px;
+    font-style: italic;
+  }
 }
