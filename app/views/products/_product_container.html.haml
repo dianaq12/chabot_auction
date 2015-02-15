@@ -3,10 +3,10 @@
     %h3= product.name
 .row
   - if product.photo_url
-    .span5.view-larger-image
+    .span4.view-larger-image
       %img{src:product.photo_url}
       = link_to "View Larger Image", product_path(product), class: "btn" if product.large_photo_url
-  .span6
+  .span7
     = product.description.html_safe
     .row.container
       .span2
