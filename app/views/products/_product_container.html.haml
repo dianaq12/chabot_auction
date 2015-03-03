@@ -41,6 +41,12 @@
         .span3
           %strong Final Bid Price:
           = number_to_currency product.highest_bid_amount
+
+      - if product.high_bidder?(@bidder)
+        .alert.alert-block.alert-success.fade.in
+          %h4
+            You are the winner!!
+
     -else
       .row
         .span6
