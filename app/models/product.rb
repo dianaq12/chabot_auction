@@ -1,6 +1,6 @@
 
 class Product < ActiveRecord::Base
-  attr_accessible :base_value, :bid_increment, :category_id, :contact_id, :description, :donor_name, :min_bid, :name, :photo_url, :short_description, :close_on, :open_on_formatted, :close_on_formatted, :paid
+  attr_accessible :base_value, :bid_increment, :category_id, :contact_id, :description, :donor_name, :min_bid, :name, :photo_url, :short_description, :close_on, :open_on_formatted, :close_on_formatted, :paid, :active
 
   belongs_to :category
   has_many :bids, dependent: :destroy
@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
 
   validates_presence_of :base_value, :bid_increment, :description, :close_on, :open_on, :min_bid, :category_id
 
-  scope :active, where("close_on > '#{(Date.today - 3).to_s}' ")
+  scope :active, where(active: true)
 
   def close_on_formatted= formatted_date
     return unless formatted_date.present?
@@ -39,6 +39,11 @@ class Product < ActiveRecord::Base
 
   def open?
     Time.now >= self.open_on && Time.now <= self.close_on
+  end
+
+  # needed so that the column is sortable in ActiveScaffold table.
+  def active?
+    self.active ? 1 : 0
   end
 
   def minimum_bid
