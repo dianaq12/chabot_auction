@@ -35,10 +35,10 @@
       - @categories.each do |category|
         - if category.products.active.count > 0
           %li{class:("active" if "##{category.name.gsub(" ","_")}" == @active_tab)}
-            %a{href:"##{category.name.gsub(" ","_")}","data-toggle" =>"tab"}= category.name
+            %a{href:"##{category.name.gsub(" ","_").gsub("'","")}","data-toggle" =>"tab"}= category.name
     .tab-content
       - @categories.each do |category|
-        .tab-pane{id:category.name.gsub(" ","_"), class:("active" if "##{category.name.gsub(" ","_")}" == @active_tab)}
+        .tab-pane{id:category.name.gsub(" ","_").gsub("'",""), class:("active" if "##{category.name.gsub(" ","_").gsub("'","")}" == @active_tab)}
           .row
             .span12
               %h4= category.description
