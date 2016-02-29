@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20160124214518) do
+ActiveRecord::Schema.define(:version => 20160229055427) do
 
   create_table "bids", :force => true do |t|
     t.string   "email"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(:version => 20160124214518) do
     t.boolean  "paid",                                            :default => false
     t.string   "large_photo_url"
     t.boolean  "active",                                          :default => false
+    t.boolean  "invoiced",                                        :default => false
   end
 
   create_table "roles", :force => true do |t|
