@@ -66,8 +66,8 @@ ChabotAuction::Application.configure do
       :address => "smtp.mailgun.org",
       :port => 587,
       :domain => "chabotparentsclub.org",
-      :user_name => "postmaster@chabotparentsclub.org",
-      :password => "3-3zbf8b1146"
+      :user_name => ENV["MAILGUN_USERNAME"],
+      :password => ENV["MAILGUN_PASSWORD"]
   }
 
 
